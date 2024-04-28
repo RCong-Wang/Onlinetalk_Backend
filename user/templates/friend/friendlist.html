@@ -1,0 +1,13 @@
+{% block context %}
+
+{% if friends %}
+    <ul>
+        {% for friend in friends %}
+            <li><a href="{% url main:create-chatroom friend=friend.id %}">{{ friend.user.username }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No users found.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Home</title>
+    </head>
+
+    <body>
+        {% block context %}
+        <p>Good</p>
+        {% if user.is_authenticated %}
+            <a href="{% url 'user:search-friend' %}">search friend</a>
+            <a href="{% url 'user:friend-list' %}">friend list</a>
+            <a href="{% url 'user:logout' %}">Logout</a>
+            
+        {% else %}
+            <a href="{% url 'user:signin-page' %}">Signin</a><br>
+            <a href="{% url 'user:login' %}">Login</a>
+        {% endif %}
+        {% endblock %}
+    </body>
+    
+</html>

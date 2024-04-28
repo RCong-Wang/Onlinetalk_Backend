@@ -1,0 +1,37 @@
+{% block context %}
+<form method="GET" action="{% url 'user:search-friend' %}">
+    <input type="text" name="username" placeholder="Enter username">
+    <button type="submit">Search</button>
+</form>
+
+{% if users %}
+    <ul>
+        {% for user in users %}
+            <button id="add-friend-button" data-friend-id="{{ user.id }}">{{ user.username }}</button>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No users found.</p>
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#add-friend-button').click(function(e) {
+            e.preventDefault();
+            var friendId = $(this).data('friend-id');
+            console.log(friendId);
+            $.ajax({
+                url: '/user/addfriend/' + friendId + '/',
+                type: 'GET',
+                success: function(response) {
+                    alert('Friend added successfully!');
+                },
+                error: function(error) {
+                    alert('Failed to add friend.');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

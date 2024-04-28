@@ -1,0 +1,11 @@
+{% block context %}
+{% if form.errors %}
+<p>Your password and password confirmation didn't same. Please try again.</p>
+{% endif %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input class="btn btn-success" type="submit" value="good" />
+</form>
+
+{% endblock %}
